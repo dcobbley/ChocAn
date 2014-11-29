@@ -1,0 +1,9 @@
+C:\Users\David\Documents\GitHub\ChocAn\ChocAn\bin\Debug\ChocAn.exe.config
+C:\Users\David\Documents\GitHub\ChocAn\ChocAn\bin\Debug\ChocAn.exe
+C:\Users\David\Documents\GitHub\ChocAn\ChocAn\bin\Debug\ChocAn.pdb
+C:\Users\David\Documents\GitHub\ChocAn\ChocAn\obj\Debug\ChocAn.csprojResolveAssemblyReference.cache
+C:\Users\David\Documents\GitHub\ChocAn\ChocAn\obj\Debug\ChocAn.Form1.resources
+C:\Users\David\Documents\GitHub\ChocAn\ChocAn\obj\Debug\ChocAn.Properties.Resources.resources
+C:\Users\David\Documents\GitHub\ChocAn\ChocAn\obj\Debug\ChocAn.csproj.GenerateResource.Cache
+C:\Users\David\Documents\GitHub\ChocAn\ChocAn\obj\Debug\ChocAn.exe
+C:\Users\David\Documents\GitHub\ChocAn\ChocAn\obj\Debug\ChocAn.pdb
