@@ -14,8 +14,7 @@ namespace ChocAn
             string path = Directory.GetCurrentDirectory();
             try
             {
-                //does this append?
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path + @"\members"))
+                using (StreamWriter file = File.AppendText(path + @"\members\members.txt"))
                 {
                     file.WriteLine(info.name + "," + info.ID + "," + info.address + "," + info.city + "," + info.state + "," + info.zip + "," + "valid" + " ");
                 }
@@ -58,14 +57,16 @@ namespace ChocAn
             memberInfo = readMembers();
             foreach (Info member in memberInfo)
             {
-                if (member.ID == ID)
+                if (member.ID == ID && member.valid =="valid")
+                {
+                    return (member.valid);
+                }
+                else if(member.ID ==ID && member.valid != "valid")
                 {
                     return (member.valid + member.reason);
                 }
-                
             }
             return "Non existent member.";
-                
         }
 
         public static bool invalidateMember(int ID, string reason)
@@ -78,7 +79,9 @@ namespace ChocAn
             {
                 if (member.ID == ID && member.reason == reason)
                 {
-                    memberInfo.Remove(member);
+                    member.valid = "invalid";
+                    member.reason = reason;
+                    addMembers(member);
                     flag = true;
                 }
                 else
@@ -91,7 +94,6 @@ namespace ChocAn
             else
                 return false;
               
-
         }
         public static List<Info> readMembers()
         {

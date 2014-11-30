@@ -9,11 +9,14 @@ namespace ChocAn
 {
     class Consultation
     {
+        const int MAX_CONSULTATIONS = 1000;
         public string currentDate, currentTime, dateProvided, comments;
         int providerId, memberId, serviceCode;
 
         public Consultation()
-        { }
+        {
+            currentDate = "";
+        }
         
         public Consultation(string tempCurrentDate, string tempCurrentTime, string tempDateProvided, string tempComments, int tempProviderId, int tempMemberId, int tempServiceCode)
         {
@@ -28,14 +31,24 @@ namespace ChocAn
         
         public bool writeServiceToDisk()
         {
+            if (currentDate == "")
+                return false;
             try
             {
+                int x;
                 string path = Directory.GetCurrentDirectory();
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path + @"\provider"))
+                for(x=0; x<MAX_CONSULTATIONS; ++x)
                 {
-                    file.WriteLine(currentDate + " " + currentTime + "," + dateProvided  + "," + providerId  + "," + memberId  + "," + serviceCode  + "," + comments);
+                    if(!Directory.Exists(path + @"\provider\consultation"+x ))
+                    {
+                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(path + @"\provider"))
+                        {
+                            file.WriteLine(currentDate + " " + currentTime + "," + dateProvided  + "," + providerId  + "," + memberId  + "," + serviceCode  + "," + comments);
+                        }
+                        return true;
+                    }
                 }
-                return true;
+                return false;
             }
             catch(Exception ex)
             {

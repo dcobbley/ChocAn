@@ -14,7 +14,7 @@ namespace ChocAn
             string path = Directory.GetCurrentDirectory();
             try
             {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path + @"\provider"))
+                using (StreamWriter file = File.AppendText(path + @"\provider"))
                 {
                     file.WriteLine(info.name + "," + info.ID + "," + info.address + "," + info.city + "," + info.state + "," + info.zip);
                 }
