@@ -14,9 +14,10 @@ namespace ChocAn
             string path = Directory.GetCurrentDirectory();
             try
             {
+                //does this append?
                 using (System.IO.StreamWriter file = new System.IO.StreamWriter(path + @"\members"))
                 {
-                    file.WriteLine(info.name + "," + info.ID + "," + info.address + "," + info.city + "," + info.state + "," + info.zip);
+                    file.WriteLine(info.name + "," + info.ID + "," + info.address + "," + info.city + "," + info.state + "," + info.zip + "," + "valid" + " ");
                 }
                 return true;
             }
@@ -25,7 +26,7 @@ namespace ChocAn
                 throw new System.ArgumentException(ex.ToString(), "origional");
             }
         }
-        public static bool removeMember(string name, string ID)
+        public static bool removeMember(string name, int ID)
         {
             List<Info> memberInfo = new List<Info>();
 
@@ -51,6 +52,47 @@ namespace ChocAn
                 throw new System.ArgumentException(ex.ToString(), "origional");
             }
         }
+        public static string validateMember(int ID)
+        {
+            List<Info> memberInfo = new List<Info>();
+            memberInfo = readMembers();
+            foreach (Info member in memberInfo)
+            {
+                if (member.ID == ID)
+                {
+                    return (member.valid + member.reason);
+                }
+                
+            }
+            return "Non existent member.";
+                
+        }
+
+        public static bool invalidateMember(int ID, string reason)
+        {
+            List<Info> memberInfo = new List<Info>();
+            memberInfo = readMembers();
+            bool flag = false;
+
+            foreach (Info member in memberInfo)
+            {
+                if (member.ID == ID && member.reason == reason)
+                {
+                    memberInfo.Remove(member);
+                    flag = true;
+                }
+                else
+                {
+                    addMembers(member);
+                }
+            }
+            if (flag)
+                return true;
+            else
+                return false;
+              
+
+        }
         public static List<Info> readMembers()
         {
             string path = Directory.GetCurrentDirectory();
@@ -66,7 +108,7 @@ namespace ChocAn
             {
                 tempSplit=rawData.Split(',');
                 tempInfo.name=tempSplit[0];
-                tempInfo.ID = tempSplit[1];
+                tempInfo.ID = Convert.ToInt32(tempSplit[1]);
                 tempInfo.address = tempSplit[2];
                 tempInfo.city = tempSplit[3];
                 tempInfo.state = tempSplit[4];

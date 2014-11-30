@@ -25,7 +25,7 @@ namespace ChocAn
                 throw new System.ArgumentException(ex.ToString(), "origional");
             }
         }
-        public static bool removeProvider(string name, string ID)
+        public static bool removeProvider(string name, int ID)
         {
             List<Info> memberInfo = new List<Info>();
 
@@ -66,7 +66,7 @@ namespace ChocAn
             {
                 tempSplit = rawData.Split(',');
                 tempInfo.name = tempSplit[0];
-                tempInfo.ID = tempSplit[1];
+                tempInfo.ID = Convert.ToInt32(tempSplit[1]);
                 tempInfo.address = tempSplit[2];
                 tempInfo.city = tempSplit[3];
                 tempInfo.state = tempSplit[4];

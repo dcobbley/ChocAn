@@ -8,12 +8,10 @@ namespace ChocAn
 {
     public class Info
     {
-        public string name, ID, address, city, state;
-        public int zip;
+        public string name, address, city, state, valid, reason;
+        public int zip, ID;
 
         public Info()
-        {
-
-        }
+        { }
     }
 }
