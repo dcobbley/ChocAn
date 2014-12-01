@@ -54,7 +54,7 @@ namespace ChocAn
         public static List<Info> readProvider()
         {
             string path = Directory.GetCurrentDirectory();
-            System.IO.StreamReader file = new System.IO.StreamReader(path + @"\provider");
+            System.IO.StreamReader file = new System.IO.StreamReader(path + @"\provider\provider.txt");
 
             string rawData;
             string[] tempSplit;

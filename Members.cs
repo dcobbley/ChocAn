@@ -98,7 +98,7 @@ namespace ChocAn
         public static List<Info> readMembers()
         {
             string path = Directory.GetCurrentDirectory();
-            System.IO.StreamReader file = new System.IO.StreamReader(path + @"\members");
+            System.IO.StreamReader file = new System.IO.StreamReader(path + @"\members\members.txt");
 
             string rawData;
             string[] tempSplit;

@@ -35,25 +35,65 @@ namespace ChocAn
                 return false;
             try
             {
-                int x;
                 string path = Directory.GetCurrentDirectory();
-                for(x=0; x<MAX_CONSULTATIONS; ++x)
+               
+                int count = 0;
+                DirectoryInfo dir = new DirectoryInfo(path + @"\consultation");
+                FileSystemInfo[] infos = dir.GetFileSystemInfos();
+                foreach (FileSystemInfo fsi in infos)
                 {
-                    if(!Directory.Exists(path + @"\provider\consultation"+x ))
-                    {
-                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(path + @"\provider"))
-                        {
-                            file.WriteLine(currentDate + " " + currentTime + "," + dateProvided  + "," + providerId  + "," + memberId  + "," + serviceCode  + "," + comments);
-                        }
-                        return true;
-                    }
+                    ++count;
                 }
-                return false;
+
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(path + @"\consultation\consultation" + count + @".txt"))
+                {
+                    file.WriteLine(currentDate + " " + currentTime + "," + dateProvided + "," + providerId + "," + memberId + "," + serviceCode + "," + comments);
+                }
+                return true;
+
             }
             catch(Exception ex)
             {
                 throw new System.ArgumentException(ex.ToString(), "origional");
             }
         }
+        public List<Consultation> readAllConsultations()
+        {
+            List<Consultation> tempList = null;
+            string path = Directory.GetCurrentDirectory();
+            int x=0;
+            int count = 0;
+            DirectoryInfo dir = new DirectoryInfo(path + @"\consultation");
+            FileSystemInfo[] infos = dir.GetFileSystemInfos();
+            foreach (FileSystemInfo fsi in infos)
+            {
+                ++count;
+            }
+
+
+            if (count == 0)
+                return tempList;
+            else
+            {
+                tempList = new List<Consultation>();
+                while (x < count)
+                {
+                    Consultation tempConsultation=null;
+
+                    string rawData;
+                    string[] tempSplit;
+                    System.IO.StreamReader file = new System.IO.StreamReader(path + @"\consultation\consultation" + x + @".txt");
+                    while ((rawData = file.ReadLine()) != null)
+                    {
+                        tempSplit = rawData.Split(',');
+                        tempConsultation = new Consultation(tempSplit[0], tempSplit[1], tempSplit[2], tempSplit[3], Convert.ToInt32(tempSplit[4]), Convert.ToInt32(tempSplit[5]), Convert.ToInt32(tempSplit[6]));
+                    }
+                    tempList.Add(tempConsultation);
+                    ++x;
+                }
+                return tempList;
+            }
+        }
+        
     }
 }

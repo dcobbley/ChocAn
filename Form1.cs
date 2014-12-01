@@ -28,8 +28,13 @@ namespace ChocAn
                 Directory.CreateDirectory(path + @"\provider");
             if (!Directory.Exists(path + @"consultation"))
                 Directory.CreateDirectory(path + @"\consultation");
+            if (!Directory.Exists(path + @"providerServiceCodes"))
+                Directory.CreateDirectory(path + @"\providerServiceCodes");
 
             //Test
+
+            /*
+            //member test.
             Info temp = new Info();
             temp.name = "David Cobbley";
             temp.ID = 123456789;
@@ -39,6 +44,33 @@ namespace ChocAn
             temp.valid = "valid";
 
             Members.addMembers(temp);
+            */
+
+            //consultation test
+            Consultation consultationTest = new Consultation("11-30-12", "11:24:13", "11-30-12", "these are my comments", 123456789, 987654321, 135246);
+            consultationTest.writeServiceToDisk();
+            
+        }
+        public void countFiles()
+        {
+            string path = Directory.GetCurrentDirectory();
+            int count = 0;
+            DirectoryInfo dir = new DirectoryInfo(path + @"\consultation");
+            FileSystemInfo[] infos = dir.GetFileSystemInfos();
+            foreach (FileSystemInfo fsi in infos)
+            {
+                ++count;
+            }
+            MessageBox.Show("The total number of files in the folder is: " + count);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //countFiles();
+
+            //consultation test
+            Consultation consultationTest = new Consultation("11-30-12", "11:24:13", "11-30-12", "these are my comments", 123456789, 987654321, 135246);
+            consultationTest.writeServiceToDisk();
         }
     }
 }
