@@ -15,6 +15,7 @@ namespace ChocAn
         //used for providerServiceDirectory
         public string serviceName;
         public int serviceCode;
+        public int dollarAmount;
 
         public Info()
         { }

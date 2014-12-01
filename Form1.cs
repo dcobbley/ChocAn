@@ -30,6 +30,8 @@ namespace ChocAn
                 Directory.CreateDirectory(path + @"\consultation");
             if (!Directory.Exists(path + @"providerServiceCodes"))
                 Directory.CreateDirectory(path + @"\providerServiceCodes");
+            if (!Directory.Exists(path + @"accounting"))
+                Directory.CreateDirectory(path + @"\accounting");
 
             //Test
 

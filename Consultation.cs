@@ -11,7 +11,7 @@ namespace ChocAn
     {
         const int MAX_CONSULTATIONS = 1000;
         public string currentDate, currentTime, dateProvided, comments;
-        int providerId, memberId, serviceCode;
+        public int providerId, memberId, serviceCode;
 
         public Consultation()
         {

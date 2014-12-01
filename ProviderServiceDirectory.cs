@@ -9,14 +9,14 @@ namespace ChocAn
 {
     static class ProviderServiceDirectory
     {
-        public static bool addServiceCode(string serviceName, int serviceNumber)
+        public static bool addServiceCode(string serviceName, int serviceNumber, int dollars)
         {
             string path = Directory.GetCurrentDirectory();
             try
             {
                 using (StreamWriter file = File.AppendText(path + @"\providerServiceCodes\providerServiceCodes.txt"))
                 {
-                    file.WriteLine(serviceName + serviceNumber);
+                    file.WriteLine(serviceName + serviceNumber + dollars);
                 }
                 return true;
             }
@@ -56,6 +56,7 @@ namespace ChocAn
 
                     tempInfo.serviceName = tempSplit[0];
                     tempInfo.serviceCode = Convert.ToInt32(tempSplit[1]);
+                    tempInfo.dollarAmount = Convert.ToInt32(tempSplit[2]);
 
                     tempMemberInfo.Add(tempInfo);
                 }
